@@ -45,6 +45,12 @@ public class Post {
 	}
 
     public void publish() {
+        validate();
+        
+        this.setStatus(Status.PUBLISHED);
+    }
+
+    public void validate() {
         if (this.getStatus() != Status.DRAFT) {
             throw new RuntimeException("A post must have at least one character");
         }
@@ -52,7 +58,5 @@ public class Post {
         if (this.getText().trim().length() == 0) {
             throw new RuntimeException("Only drafts can be posted");
         }
-        
-        this.setStatus(Status.PUBLISHED);
     }
 }
