@@ -1,0 +1,1 @@
+Uma classe coesa é aquela que possui uma única responsabilidade
