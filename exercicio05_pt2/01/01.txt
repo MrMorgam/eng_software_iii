@@ -1,0 +1,5 @@
+    A herança entre as classes ContaBancaria e ContaPoupanca pode ser questionada devido ao 
+fato de que a classe derivada (ContaPoupanca) está restringindo o comportamento da classe base 
+(ContaBancaria). Em outras palavras, a classe derivada está impondo uma restrição adicional no 
+método sacar que não está presente na classe base.
+    

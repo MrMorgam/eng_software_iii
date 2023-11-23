@@ -14,11 +14,7 @@ public class Post {
         this.setText(text);
         this.setStatus(status);
     }
-
-    public void publish() {
-        this.setStatus(Status.PUBLISHED);
-    }
-
+    
 	public String getText() {
 		return text;
 	}
