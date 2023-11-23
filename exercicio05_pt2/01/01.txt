@@ -1,5 +1,46 @@
-    A herança entre as classes ContaBancaria e ContaPoupanca pode ser questionada devido ao 
-fato de que a classe derivada (ContaPoupanca) está restringindo o comportamento da classe base 
-(ContaBancaria). Em outras palavras, a classe derivada está impondo uma restrição adicional no 
-método sacar que não está presente na classe base.
-    
+    A herança entre as classes ContaBancaria e ContaPoupanca pode ser questionada pelo fato 
+de que a classe derivada ContaPoupanca está impondo uma restrição adicional no método sacar 
+que não está presente na classe base. Uma solução poderia ser usar composição em vez de 
+herança. Em vez de ContaPoupanca herdar de ContaBancaria, poderíamos ter uma instância de 
+ContaBancaria como um membro dentro da classe ContaPoupanca.
+
+Código refatorado:
+
+public class ContaBancaria {
+    private double saldo;
+
+    public ContaBancaria(double saldoInicial) {
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+
+    public void sacar(double valor) {
+        saldo -= valor;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+public class ContaPoupanca {
+    private ContaBancaria contaBancaria;
+
+    public ContaPoupanca(double saldoInicial) {
+        this.contaBancaria = new ContaBancaria(saldoInicial);
+    }
+
+    public void sacar(double valor) {
+        if (valor > 1000) {
+            throw new RuntimeException("Não pode sacar mais de 1000 em uma poupança");
+        }
+        contaBancaria.sacar(valor);
+    }
+
+    public double getSaldo() {
+        return contaBancaria.getSaldo();
+    }
+}
