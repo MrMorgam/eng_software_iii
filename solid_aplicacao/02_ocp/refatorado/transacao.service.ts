@@ -17,7 +17,7 @@ class TransacaoSaida implements TipoTransacao {
   calcularTotal(transacoes: Transacao[]): number {
     return transacoes.reduce((total, transacao) => {
       if (transacao.tipo === 'saida') {
-        return total + transacao.valor;
+        return total - transacao.valor;
       }
       return total;
     }, 0);
